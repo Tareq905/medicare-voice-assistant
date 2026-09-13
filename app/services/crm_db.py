@@ -3,7 +3,18 @@ import os
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-DB_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "clinic_crm.db")
+import shutil
+
+if os.environ.get("VERCEL"):
+    DB_FILE = "/tmp/clinic_crm.db"
+    _orig_db = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "clinic_crm.db")
+    if not os.path.exists(DB_FILE) and os.path.exists(_orig_db):
+        try:
+            shutil.copyfile(_orig_db, DB_FILE)
+        except Exception:
+            pass
+else:
+    DB_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "clinic_crm.db")
 
 
 def get_db_connection() -> sqlite3.Connection:
