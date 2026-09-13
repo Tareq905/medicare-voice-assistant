@@ -1025,9 +1025,40 @@ p {
   gap: 20px;
 }
 
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .footer-bottom p {
   font-size: 0.85rem;
   color: var(--text-dim);
+  margin: 0;
+}
+
+.footer-visit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #38bdf8;
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition: all 0.25s ease;
+}
+
+.footer-visit-link:hover {
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+  transform: translateY(-1px);
 }
 
 /* Floating Robot Voice Agent Widget Button */
