@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedPulse Healthcare Clinic | AI-Powered Voice Assistant & Appointments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </div>
+        <span class="logo-text">MedPulse <span>Clinic</span></span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#doctors">Doctors & Schedules</a>
+        <a href="#about">About Clinic</a>
+      </nav>
+
+      <div class="nav-action">
+        <!-- <button id="open-voice-header-btn" class="btn btn-primary pulse-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+        </button> -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-glow"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="tag-pill">
+          <span class="pill-dot"></span>
+          AI-Powered Healthcare Voice Agent Active
+        </div>
+        <h1>Next-Gen Healthcare Consultations & Instant Booking</h1>
+        <p>Call our AI Medical Agent to ask about clinic services, doctor availability, and book doctor appointments in
+          real-time. Direct auto-sync with our Patient CRM.</p>
+
+        <div class="hero-actions">
+          <button id="hero-start-call-btn" class="btn btn-primary btn-lg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            Dial Voice Assistant
+          </button>
+          <a href="#doctors" class="btn btn-outline btn-lg">Check Doctor Schedules</a>
+        </div>
+
+        <div class="hero-features-strip">
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <span>Real-time Voice Conversation</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🩺</span>
+            <span>Instant Doctor Scheduling</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔒</span>
+            <span>Live CRM Patient Leads</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card-preview">
+        <div class="agent-preview-card">
+          <div class="preview-header">
+            <div class="agent-avatar-small">
+              🤖
+            </div>
+            <div>
+              <h4>Dr. AI Assistant</h4>
+              <span class="status-online"><span class="pulse-dot"></span> Online & Ready</span>
+            </div>
+          </div>
+          <div class="preview-dialogue">
+            <div class="chat-bubble bot">
+              "Hello! Welcome to MedPulse Clinic. Would you like to check doctor availability, book an appointment, or
+              learn about our services?"
+            </div>
+            <div class="chat-bubble user">
+              "I want to book an appointment with Dr. Ali Hossain tomorrow afternoon."
+            </div>
+            <div class="chat-bubble bot">
+              "Certainly! Dr. Ali Hossain is available between 9 AM and 10 PM. May I have your name and phone number to
+              confirm the booking?"
+            </div>
+          </div>
+          <div class="preview-footer">
+            <span>🔴 Live Speech Recognition</span>
+            <span class="agent-tag">Vapi Voice WebSDK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctors & Schedules Section -->
+  <section id="doctors" class="section doctors-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <span class="section-subtitle">Specialist Care</span>
+        <h2>Our Doctors & Availability</h2>
+        <p>Consultations are open during scheduled hours. Note that after 10:00 PM, private appointments are routed to
+          our Help Desk.</p>
+      </div>
+
+      <div class="doctors-grid">
+        <!-- Dr. Ali Hossain -->
+        <div class="doctor-card" id="card-doc_1">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👨‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_1</span>
+              </div>
+              <h3 class="doctor-name">Dr. Ali Hossain</h3>
+              <p class="doctor-spec">Internal & General Medicine</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours</span>
+                <span class="sched-value font-mono">09:00 AM – 10:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Sunday – Thursday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_1" data-doc-name="Dr. Ali Hossain">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_1" data-doc-name="Dr. Ali Hossain">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Zarah Binte Alam -->
+        <div class="doctor-card" id="card-doc_2">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👩‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-primary doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_2</span>
+              </div>
+              <h3 class="doctor-name">Dr. Zarah Binte Alam</h3>
+              <p class="doctor-spec">Cardiology & Internal Medicine</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours</span>
+                <span class="sched-value font-mono">10:00 AM – 08:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Saturday – Wednesday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_2" data-doc-name="Dr. Zarah Binte Alam">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_2" data-doc-name="Dr. Zarah Binte Alam">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Sarah Chen -->
+        <div class="doctor-card" id="card-doc_5">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👩‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_5</span>
+              </div>
+              <h3 class="doctor-name">Dr. Sarah Chen</h3>
+              <p class="doctor-spec">Gynecology & Obstetrics</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours (From 08:30 AM)</span>
+                <span class="sched-value font-mono">09:00 AM – 05:30 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Sunday – Thursday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_5" data-doc-name="Dr. Sarah Chen">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_5" data-doc-name="Dr. Sarah Chen">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. James Mitchell -->
+        <div class="doctor-card" id="card-doc_8">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👨‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_8</span>
+              </div>
+              <h3 class="doctor-name">Dr. James Mitchell</h3>
+              <p class="doctor-spec">Neurology & Brain Surgery</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours</span>
+                <span class="sched-value font-mono">10:00 AM – 06:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Tuesday – Saturday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_8" data-doc-name="Dr. James Mitchell">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_8" data-doc-name="Dr. James Mitchell">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Amara Okonkwo -->
+        <div class="doctor-card" id="card-doc_3">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👩‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_3</span>
+              </div>
+              <h3 class="doctor-name">Dr. Amara Okonkwo</h3>
+              <p class="doctor-spec">Pediatrics & Family Medicine</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours (From 09:15 AM)</span>
+                <span class="sched-value font-mono">08:30 AM – 04:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Monday – Thursday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_3" data-doc-name="Dr. Amara Okonkwo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_3" data-doc-name="Dr. Amara Okonkwo">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Marcus Rodriguez -->
+        <div class="doctor-card" id="card-doc_12">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👨‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_12</span>
+              </div>
+              <h3 class="doctor-name">Dr. Marcus Rodriguez</h3>
+              <p class="doctor-spec">Orthopedic Surgery</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours (From 11:00 AM)</span>
+                <span class="sched-value font-mono">10:30 AM – 05:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Wednesday – Saturday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_12" data-doc-name="Dr. Marcus Rodriguez">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_12" data-doc-name="Dr. Marcus Rodriguez">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Elena Kowalski -->
+        <div class="doctor-card" id="card-doc_7">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👩‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_7</span>
+              </div>
+              <h3 class="doctor-name">Dr. Elena Kowalski</h3>
+              <p class="doctor-spec">Dermatology & Cosmetic Medicine</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours</span>
+                <span class="sched-value font-mono">02:00 PM – 08:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Tuesday – Sunday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_7" data-doc-name="Dr. Elena Kowalski">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_7" data-doc-name="Dr. Elena Kowalski">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Priya Sharma -->
+        <div class="doctor-card" id="card-doc_4">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👩‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_4</span>
+              </div>
+              <h3 class="doctor-name">Dr. Priya Sharma</h3>
+              <p class="doctor-spec">Psychiatry & Mental Health</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours (From 03:30 PM)</span>
+                <span class="sched-value font-mono">03:00 PM – 09:00 PM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Sunday – Thursday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_4" data-doc-name="Dr. Priya Sharma">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_4" data-doc-name="Dr. Priya Sharma">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. David O'Brien -->
+        <div class="doctor-card" id="card-doc_9">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap">
+              <div class="doctor-avatar">👨‍⚕️</div>
+              <span class="avatar-status-dot" title="Available"></span>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-success doc-avail-badge">● Available Today</span>
+                <span class="doc-id-pill font-mono">doc_9</span>
+              </div>
+              <h3 class="doctor-name">Dr. David O'Brien</h3>
+              <p class="doctor-spec">Emergency Medicine</p>
+            </div>
+          </div>
+
+          <div class="doc-schedule-card">
+            <div class="schedule-item">
+              <div class="schedule-icon">🕒</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Hours (Night Shift)</span>
+                <span class="sched-value font-mono">06:00 PM – 06:00 AM</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-icon">📅</div>
+              <div class="schedule-text">
+                <span class="sched-label">Visiting Days</span>
+                <span class="sched-value">Thursday – Tuesday</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doctor-card-actions">
+            <button class="btn btn-primary btn-block book-doc-btn" data-doc-id="doc_9" data-doc-name="Dr. David O'Brien">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span>Book via AI Assistant</span>
+            </button>
+            <button class="btn btn-outline btn-block book-manual-btn" data-doc-id="doc_9" data-doc-name="Dr. David O'Brien">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Manual Book</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Clinic Schedule Policy -->
+        <div class="doctor-card policy-card">
+          <div class="doctor-card-top">
+            <div class="doctor-avatar-wrap policy-avatar-wrap">
+              <div class="doctor-avatar policy-avatar">🌙</div>
+            </div>
+            <div class="doctor-header-details">
+              <div class="doctor-badge-row">
+                <span class="badge badge-warning">Night Policy</span>
+                <span class="doc-id-pill font-mono">10 PM Cutoff</span>
+              </div>
+              <h3 class="doctor-name">After 10:00 PM Policy</h3>
+              <p class="doctor-spec" style="color: #fbbf24;">Private Consultations Cutoff</p>
+            </div>
+          </div>
+
+          <div class="policy-body">
+            <p class="policy-desc">
+              Doctors do not see private patients after <strong>10:00 PM</strong>. When an appointment is requested during this window, the AI Assistant states:
+            </p>
+            <blockquote class="policy-quote">
+              "Doctor is not available at this time, let me redirect your info to our available persons."
+            </blockquote>
+            <div class="policy-footer-note">
+              <span class="note-icon">⚡</span>
+              <span>All late night requests are automatically registered as <strong>Midnight Leads</strong> in our CRM for priority staff follow-up.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinic Services Section -->
+  <section id="services" class="section services-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <span class="section-subtitle">Comprehensive Care</span>
+        <h2>Clinic Services & Consultancy</h2>
+        <p>You can ask our Voice Agent about any of these services during your call.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🩺</div>
+          <h4>General Consultation</h4>
+          <p>Routine health checkups, chronic symptom reviews, diagnosis, and medical advice by certified physicians.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔬</div>
+          <h4>Diagnostic & Lab Tests</h4>
+          <p>Comprehensive blood panels, ultrasounds, digital X-rays, and quick turnaround pathology results.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">👶</div>
+          <h4>Women & Child Healthcare</h4>
+          <p>Dedicated maternal care, pre-natal consultation, gynecological support, and pediatric care.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏥</div>
+          <h4>Help Desk & Consultancy</h4>
+          <p>Direct patient guidance, report evaluations, treatment plan explanations, and hospital referrals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </div>
+          <span class="logo-text">MedPulse <span>Clinic</span></span>
+        </div>
+        <p>AI-Powered Healthcare Solutions & Voice Automation.</p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 MedPulse Clinic. All rights reserved. Powered by FastAPI & Vapi AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Robot Voice Agent Widget Button -->
+  <div class="floating-voice-widget" id="floating-voice-widget">
+    <div class="widget-pulse-ring"></div>
+    <button class="widget-trigger-btn" id="voice-widget-toggle-btn" aria-label="Open AI Voice Assistant">
+      <div class="robot-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+          <circle cx="12" cy="5" r="2"></circle>
+          <path d="M12 7v4"></path>
+          <line x1="8" y1="16" x2="8.01" y2="16"></line>
+          <line x1="16" y1="16" x2="16.01" y2="16"></line>
+        </svg>
+      </div>
+      <span class="widget-tooltip">Speak with Doctor Agent</span>
+    </button>
+  </div>
+
+  <!-- Voice Agent Modal / Chat Drawer -->
+  <div class="voice-modal-backdrop" id="voice-modal-backdrop">
+    <div class="voice-modal" id="voice-modal">
+      <div class="voice-modal-header">
+        <div class="agent-profile">
+          <div class="agent-avatar-orb" id="avatar-orb">
+            <div class="orb-inner">🤖</div>
+            <div class="orb-waves">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div>
+            <div class="agent-name-row">
+              <h3>MedPulse AI Agent</h3>
+              <span class="call-badge idle" id="call-status-badge">Idle</span>
+            </div>
+            <span class="agent-desc" id="call-timer-text">Ready to assist • Click Dial to talk</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="voice-modal-close-btn" aria-label="Close">
+          &times;
+        </button>
+      </div>
+
+      <!-- Visualizer Area -->
+      <div class="voice-visualizer-container" id="visualizer-container">
+        <div class="sound-wave-bars" id="wave-bars">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div class="call-state-message" id="call-state-message">
+          Click the <strong>Dial</strong> button below to start talking to our AI Healthcare Agent.
+        </div>
+      </div>
+
+      <!-- Live Chat Transcript Area -->
+      <div class="transcript-header">
+        <span>💬 Live Discussion Transcript</span>
+        <span class="transcript-note">Updates in real-time</span>
+      </div>
+      <div class="transcript-container" id="transcript-container">
+        <div class="chat-message bot">
+          <div class="chat-sender">🤖 AI Agent</div>
+          <div class="chat-text">
+            Hello! I am MedPulse Clinic's voice assistant. Dial in to check doctor schedules, ask clinic questions, or
+            book an appointment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Call Controls -->
+      <div class="voice-controls-bar">
+        <button id="start-call-btn" class="btn btn-call-start">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Dial / Start Call
+        </button>
+        <button id="end-call-btn" class="btn btn-call-end hidden">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91" />
+            <line x1="1" y1="1" x2="23" y2="23" />
+          </svg>
+          End Call
+        </button>
+        <button id="mute-call-btn" class="btn btn-icon hidden" title="Toggle Mute">
+          <svg id="mic-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Patient Manual Booking Modal -->
+  <div class="modal-backdrop" id="patient-booking-modal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-primary">Online Appointment</span>
+          <h3 style="margin-top: 4px;">Book Doctor Appointment</h3>
+        </div>
+        <button id="close-patient-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="patient-booking-form">
+        <div class="form-group">
+          <label>Your Full Name *</label>
+          <input type="text" id="patient-name-input" required placeholder="e.g. Tanvir Ahmed">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="patient-phone-input" required placeholder="e.g. +8801700000000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Selected Doctor</label>
+            <select id="patient-doctor-select">
+              <option value="doc_1">Dr. Ali Hossain (Internal & General Medicine)</option>
+              <option value="doc_2">Dr. Zarah Binte Alam (Cardiology & Internal Medicine)</option>
+              <option value="doc_5">Dr. Sarah Chen (Gynecology & Obstetrics)</option>
+              <option value="doc_8">Dr. James Mitchell (Neurology & Brain Surgery)</option>
+              <option value="doc_3">Dr. Amara Okonkwo (Pediatrics & Family Medicine)</option>
+              <option value="doc_12">Dr. Marcus Rodriguez (Orthopedic Surgery)</option>
+              <option value="doc_7">Dr. Elena Kowalski (Dermatology & Cosmetic Medicine)</option>
+              <option value="doc_4">Dr. Priya Sharma (Psychiatry & Mental Health)</option>
+              <option value="doc_9">Dr. David O'Brien (Emergency Medicine)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="patient-date-input" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Time</label>
+            <input type="time" id="patient-time-input" required value="11:00">
+          </div>
+          <div class="form-group">
+            <label>Reason / Symptoms</label>
+            <input type="text" id="patient-reason-input" placeholder="e.g. Routine checkup, Fever">
+          </div>
+        </div>
+        <div id="patient-booking-success" class="hidden" style="margin-bottom: 14px; padding: 10px 14px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-sm); color: #6ee7b7; font-size: 0.9rem;">
+          ✅ Appointment booked successfully! Our clinic desk will contact you shortly.
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel-patient-modal-btn" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="submit-patient-booking-btn" class="btn btn-primary">Confirm Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script Modules -->
+  <script type="module" src="/js/app.js?v=2.5"></script>
+</body>
+
+</html>

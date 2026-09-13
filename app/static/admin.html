@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedPulse Clinic | Staff Admin CRM Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Dedicated Admin Portal Styling */
+    .admin-body {
+      background-color: #070c18;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-navbar {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .admin-nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .admin-brand-tag {
+      background: rgba(14, 165, 233, 0.15);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 8px;
+    }
+
+    .admin-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .admin-main-content {
+      flex: 1;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 24px 60px 24px;
+      width: 100%;
+    }
+
+    /* Auth Gate Layout */
+    .admin-auth-screen {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .admin-auth-panel {
+      width: 440px;
+      max-width: 100%;
+      background: var(--bg-card);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(14, 165, 233, 0.1);
+      backdrop-filter: blur(16px);
+    }
+
+    .auth-badge-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px auto;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(99, 102, 241, 0.25));
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .admin-auth-panel h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .admin-auth-panel p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .auth-field {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    .auth-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .auth-field input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      color: #fff;
+      font-size: 0.92rem;
+      font-family: var(--font-sans);
+    }
+
+    .auth-field input:focus {
+      outline: none;
+      border-color: var(--border-focus);
+    }
+
+    .auth-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      font-size: 0.84rem;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .view-site-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .view-site-link:hover {
+      color: #fff;
+    }
+
+    .auto-refresh-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      color: #6ee7b7;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .auto-refresh-pill .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- Admin Navbar -->
+  <header class="admin-navbar">
+    <div class="admin-nav-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <span class="logo-text">MedPulse <span>Clinic</span></span>
+        <span class="admin-brand-tag">Admin CRM</span>
+      </div>
+
+      <div class="admin-nav-right">
+        <a href="/" class="view-site-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          Public Website
+        </a>
+
+        <div id="admin-user-controls" style="display: none; align-items: center; gap: 12px;">
+          <span class="admin-user-pill">
+            <span class="pill-dot"></span> Admin: <strong>admin</strong>
+          </span>
+          <button id="admin-logout-btn" class="btn btn-outline btn-sm btn-danger-hover">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="admin-main-content">
+
+    <!-- Screen 1: Unauthenticated Login Gate -->
+    <div id="admin-auth-screen" class="admin-auth-screen">
+      <div class="admin-auth-panel">
+        <div class="auth-badge-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h2>Admin Authentication</h2>
+        <p>Restricted access for clinic receptionists and administration staff only.</p>
+
+        <form id="admin-login-form">
+          <div class="auth-field">
+            <label>Username</label>
+            <input type="text" id="admin-username" required placeholder="admin" autocomplete="username">
+          </div>
+          <div class="auth-field">
+            <label>Password</label>
+            <input type="password" id="admin-password" required placeholder="••••••••" autocomplete="current-password">
+          </div>
+
+          <div id="admin-login-error" class="auth-error hidden"></div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            Sign In to Dashboard
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Screen 2: Authenticated CRM Dashboard -->
+    <div id="admin-dashboard-screen" style="display: none;">
+      <div class="crm-header-wrapper">
+        <div>
+          <span class="section-subtitle">Clinic Administration</span>
+          <h2>Patient Leads & Appointments CRM</h2>
+          <p>Real-time patient appointments booked via AI Assistant and manual entries.</p>
+        </div>
+        <div class="crm-actions" style="display: flex; align-items: center; gap: 12px;">
+          <div class="auto-refresh-pill" id="auto-refresh-status" title="Leads and statistics automatically refresh every 5 seconds">
+            <span class="pulse-dot"></span>
+            <span>Live Sync: <strong id="refresh-countdown">5s</strong></span>
+          </div>
+          <button id="refresh-leads-btn" class="btn btn-outline btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Refresh
+          </button>
+          <button id="add-manual-lead-btn" class="btn btn-primary btn-sm">
+            + New Lead (Manual)
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Cards Row -->
+      <div class="crm-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon stat-blue">📋</div>
+          <div>
+            <span class="stat-label">Total Leads</span>
+            <h3 id="stat-total-leads" class="stat-value">0</h3>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-amber">⏳</div>
+          <div>
+            <span class="stat-label">New Leads</span>
+            <h3 id="stat-new-leads" class="stat-value">0</h3>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-emerald">✅</div>
+          <div>
+            <span class="stat-label">Confirmed</span>
+            <h3 id="stat-confirmed" class="stat-value">0</h3>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-purple">📅</div>
+          <div>
+            <span class="stat-label">Today's Appointments</span>
+            <h3 id="stat-today" class="stat-value">0</h3>
+          </div>
+        </div>
+        <div class="stat-card" id="stat-card-midnight" style="cursor: pointer;" title="Click to view Midnight Patients">
+          <div class="stat-icon" style="background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35);">🌙</div>
+          <div>
+            <span class="stat-label">Midnight Patients</span>
+            <h3 id="stat-midnight-leads" class="stat-value" style="color: #fbbf24;">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Views Navigation Tabs -->
+      <div class="crm-tabs-nav" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; border-bottom: 1px solid var(--border); padding-bottom: 14px; flex-wrap: wrap;">
+        <div style="display: flex; gap: 10px;">
+          <button id="tab-all-leads" class="btn btn-sm btn-primary active-tab" style="display: flex; align-items: center; gap: 6px;">
+            <span>📋 All Patient Leads</span>
+            <span id="all-tab-badge" class="badge" style="background: rgba(255,255,255,0.15); color: #fff;">0</span>
+          </button>
+          <button id="tab-midnight-leads" class="btn btn-sm btn-outline" style="display: flex; align-items: center; gap: 6px; border-color: rgba(245, 158, 11, 0.4); color: #f59e0b;">
+            <span>🌙 Midnight Patients (Follow-up)</span>
+            <span id="midnight-tab-badge" class="badge" style="background: rgba(245, 158, 11, 0.25); color: #fbbf24;">0</span>
+          </button>
+        </div>
+        <div id="midnight-view-banner" style="display: none; font-size: 0.85rem; color: #fbbf24; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); padding: 6px 14px; border-radius: 9999px;">
+          ⚡ Viewing Midnight Patients who requested appointments after 10 PM. Please follow up directly.
+        </div>
+      </div>
+
+      <!-- Filters Row -->
+      <div class="crm-filter-bar">
+        <div class="search-input-group">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="crm-search-input" placeholder="Search by patient name, phone, or doctor...">
+        </div>
+        <div class="status-filter-group">
+          <label>Filter Status:</label>
+          <select id="crm-status-filter">
+            <option value="all">All Statuses</option>
+            <option value="new_lead">New Lead</option>
+            <option value="midnight_patient">🌙 Midnight Patient</option>
+            <option value="followed_up">📞 Followed Up</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Leads Table -->
+      <div class="table-container">
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient Name</th>
+              <th>Phone</th>
+              <th>Doctor</th>
+              <th>Appointment Date & Time</th>
+              <th>Reason / Note</th>
+              <th>Booking Type</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="crm-leads-tbody">
+            <tr>
+              <td colspan="9" class="text-center py-6">Loading patient leads...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Manual Lead Entry Modal -->
+  <div class="modal-backdrop" id="manual-lead-modal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add New Patient Lead</h3>
+        <button id="close-manual-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="manual-lead-form">
+        <div class="form-group">
+          <label>Patient Name *</label>
+          <input type="text" id="lead-name" required placeholder="e.g. Tanvir Ahmed">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="text" id="lead-phone" required placeholder="e.g. +8801700000000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Doctor</label>
+            <select id="lead-doctor">
+              <option value="doc_1">Dr. Ali Hossain (Internal & General Medicine)</option>
+              <option value="doc_2">Dr. Zarah Binte Alam (Cardiology & Internal Medicine)</option>
+              <option value="doc_5">Dr. Sarah Chen (Gynecology & Obstetrics)</option>
+              <option value="doc_8">Dr. James Mitchell (Neurology & Brain Surgery)</option>
+              <option value="doc_3">Dr. Amara Okonkwo (Pediatrics & Family Medicine)</option>
+              <option value="doc_12">Dr. Marcus Rodriguez (Orthopedic Surgery)</option>
+              <option value="doc_7">Dr. Elena Kowalski (Dermatology & Cosmetic Medicine)</option>
+              <option value="doc_4">Dr. Priya Sharma (Psychiatry & Mental Health)</option>
+              <option value="doc_9">Dr. David O'Brien (Emergency Medicine)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="lead-date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Time</label>
+            <input type="time" id="lead-time">
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="lead-status">
+              <option value="new_lead">New Lead</option>
+              <option value="confirmed">Confirmed</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Reason / Symptoms</label>
+          <textarea id="lead-reason" rows="2" placeholder="e.g. Fever, Consultation"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel-manual-modal-btn" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to CRM</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/admin.js?v=2.1"></script>
+</body>
+</html>
